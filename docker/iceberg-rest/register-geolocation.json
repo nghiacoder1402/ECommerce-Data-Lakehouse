@@ -1,0 +1,5 @@
+{
+  "name": "geolocation",
+  "metadata-location": "s3a://ecommerce/iceberg/raw/geolocation/metadata/v2.metadata.json",
+  "overwrite": false
+}

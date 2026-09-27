@@ -1,0 +1,36 @@
+services:
+  iceberg-rest:
+    image: apache/iceberg-rest-fixture:latest
+    container_name: ecommerce-iceberg-rest
+    hostname: iceberg-rest
+
+    ports:
+      - "8182:8181"
+
+    environment:
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_REGION: us-east-1
+
+      CATALOG_WAREHOUSE: s3://ecommerce/iceberg/
+      CATALOG_IO__IMPL: org.apache.iceberg.aws.s3.S3FileIO
+      CATALOG_S3_ENDPOINT: http://minio:9000
+      CATALOG_S3_PATH__STYLE__ACCESS: "true"
+
+      CATALOG_CATALOG__IMPL: org.apache.iceberg.jdbc.JdbcCatalog
+      CATALOG_URI: jdbc:sqlite:/tmp/iceberg_catalog.db
+      CATALOG_JDBC_USER: user
+      CATALOG_JDBC_PASSWORD: password
+      CATALOG_JDBC_STRICT__MODE: "true"
+
+      REST_PORT: 8181
+
+    volumes:
+      - ./data:/tmp
+
+    networks:
+      - ecommerce-lakehouse
+
+networks:
+  ecommerce-lakehouse:
+    external: true

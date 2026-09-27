@@ -1,0 +1,5 @@
+{
+  "name": "product_category_translation",
+  "metadata-location": "s3a://ecommerce/iceberg/raw/product_category_translation/metadata/v1.metadata.json",
+  "overwrite": false
+}

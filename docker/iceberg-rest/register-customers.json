@@ -1,0 +1,5 @@
+{
+  "name": "customers",
+  "metadata-location": "s3a://ecommerce/iceberg/raw/customers/metadata/v1.metadata.json",
+  "overwrite": false
+}
